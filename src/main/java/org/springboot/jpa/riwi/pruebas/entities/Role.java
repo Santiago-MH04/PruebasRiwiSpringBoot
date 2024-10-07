@@ -1,10 +1,7 @@
 package org.springboot.jpa.riwi.pruebas.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springboot.jpa.riwi.pruebas.utils.roleUtils.RoleName;
 
 import java.util.ArrayList;
@@ -18,11 +15,13 @@ import java.util.List;
 @Builder    //Para generar instancias de Customer según nuestras necesidades
 /*@EqualsAndHashCode(exclude = ) */ //Para evitar un StackOverFlowError regordo
 @Data
+@Setter
 public class Role {
         //Atributos de Role
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
+    @Column(unique = true)
     private RoleName name;
     @ManyToMany(mappedBy = "roles")
     private List<Carrier> carriers;

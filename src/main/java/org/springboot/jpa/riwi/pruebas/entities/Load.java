@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springboot.jpa.riwi.pruebas.utils.loadUtils.Status;
+import org.springboot.jpa.riwi.pruebas.utils.loadUtils.*;
+import org.springboot.jpa.riwi.pruebas.utils.palletUtils.State;
+
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "loads")
@@ -27,6 +30,8 @@ public class Load {
 
     private int weight;
     private Status status;
+    private String state;
+        private Boolean isDamaged;
     @OneToOne(
         cascade = CascadeType.ALL,
         orphanRemoval = true
@@ -34,7 +39,16 @@ public class Load {
     @JoinColumn(name = "pallet_id")
     private Pallet pallet;
 
-    //Constructores de Load
+        //Constructores de Load
+    @PrePersist
+    public void prePersistLoad(){
+        if(this.isDamaged){
+            this.state = "DAMAGED";
+        } else {
+            this.state = "FINE";
+        }
+    }
+
     //Asignadores de atributos de Load (setters)
     //Lectores de atributos de Load (getters)
     //Métodos de Load
