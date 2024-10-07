@@ -1,15 +1,15 @@
 package org.springboot.jpa.riwi.pruebas.services.implementations;
 
-import org.springboot.jpa.riwi.pruebas.repositories.EntityTemplateRepository;
-import org.springboot.jpa.riwi.pruebas.services.abstractions.EntityTemplateService;
+import org.springboot.jpa.riwi.pruebas.repositories.PalletRepository;
+import org.springboot.jpa.riwi.pruebas.services.abstractions.PalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EntityTemplateServiceImpl implements EntityTemplateService {
+public class PalletServiceImpl implements PalletService {
         //Atributos de EntityTemplateServiceImpl
     @Autowired
-    private EntityTemplateRepository repoEntity;
+    private PalletRepository repoPallet;
 
     //Constructores de EntityTemplateServiceImpl
     //Asignadores de atributos de EntityTemplateServiceImpl (setters)

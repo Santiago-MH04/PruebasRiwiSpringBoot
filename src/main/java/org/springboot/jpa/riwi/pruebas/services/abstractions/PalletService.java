@@ -1,6 +1,6 @@
 package org.springboot.jpa.riwi.pruebas.services.abstractions;
 
-public interface EntityTemplateService {
+public interface PalletService {
     //Atributos de EntityTemplateService
     //Constructores de EntityTemplateService
     //Asignadores de atributos de EntityTemplateService (setters)
