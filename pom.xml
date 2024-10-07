@@ -104,6 +104,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
+			<!--Esta dependencia es para configurar las variables de entorno-->
+		<dependency>
+			<!-- https://mvnrepository.com/artifact/me.paulschwarz/spring-dotenv -->
+			<groupId>me.paulschwarz</groupId>
+			<artifactId>spring-dotenv</artifactId>
+			<version>4.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
