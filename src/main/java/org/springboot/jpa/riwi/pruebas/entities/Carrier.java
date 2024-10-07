@@ -24,8 +24,27 @@ public class Carrier {
     private String id;
     private String name;
     private String company;
-    @OneToMany  //Configurar la relación luego
+    @OneToMany(
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    @JoinTable(
+        name = "carriers_loads",
+        joinColumns = @JoinColumn(name = "carrier_id"),
+        inverseJoinColumns = @JoinColumn(name = "load_id"),
+        uniqueConstraints = @UniqueConstraint(columnNames = {"carrier_id","load_id"})
+    )
     private List<Load> loads;
+
+    @ManyToMany
+    @JoinTable(
+        name = "carriers_roles",
+        joinColumns = @JoinColumn(name = "carrier_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id"),
+        uniqueConstraints = @UniqueConstraint(columnNames = {"carrier_id", "role_id"})
+    )
+    private List<Role> roles;
+
 
         //Constructores de Carrier
     @PrePersist

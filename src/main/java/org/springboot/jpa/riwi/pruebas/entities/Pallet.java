@@ -21,11 +21,12 @@ public class Pallet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "maximum_capacity")
     private int maximumCapacity;
     private State state;
     private Location location;
+    @OneToOne(mappedBy = "pallet")
+    private Load load;
 
 
     //Constructores de EntityTemplate

@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springboot.jpa.riwi.pruebas.utils.roleUtils.RoleName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,11 +24,16 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private RoleName name;
-
-    @ManyToMany //Configurar la relación luego
+    @ManyToMany(mappedBy = "roles")
     private List<Carrier> carriers;
 
         //Constructores de Role
+    @PrePersist
+    public void prePersistCarrier(){
+        if(this.carriers == null || this.carriers.isEmpty()){
+            this.carriers = new ArrayList<>();
+        }
+    }
     //Asignadores de atributos de Role (setters)
     //Lectores de atributos de Role (getters)
     //Métodos de Role

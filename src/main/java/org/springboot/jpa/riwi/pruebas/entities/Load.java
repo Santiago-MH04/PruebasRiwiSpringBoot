@@ -27,8 +27,12 @@ public class Load {
 
     private int weight;
     private Status status;
-    @OneToOne
-    private Pallet pallet;  //Configurar bidireccionalidad luego, de ser necesario
+    @OneToOne(
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    @JoinColumn(name = "pallet_id")
+    private Pallet pallet;
 
     //Constructores de Load
     //Asignadores de atributos de Load (setters)
