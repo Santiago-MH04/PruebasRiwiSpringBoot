@@ -15,6 +15,6 @@ public interface CarrierRepository extends JpaRepository<Carrier, String> {
     //Asignadores de atributos de CarrierRepository (setters)
     //Lectores de atributos de CarrierRepository (getters)
         //Métodos de CarrierRepository
-    @Query("select c.roles from Carrier c left join c.roles where c.id =?1")
+    @Query("select c.loads from Carrier c left join c.loads where c.id =?1")
     public List<Load> findAllLoadsByCarrier(String carrierID);
 }

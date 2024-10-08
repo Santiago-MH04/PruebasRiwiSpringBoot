@@ -32,12 +32,16 @@ public class Load {
     private Status status;
     private String state;
         private Boolean isDamaged;
+
     @OneToOne(
         cascade = CascadeType.ALL,
         orphanRemoval = true
     )
     @JoinColumn(name = "pallet_id")
     private Pallet pallet;
+
+    @ManyToOne
+    private Carrier carrier;
 
         //Constructores de Load
     @PrePersist

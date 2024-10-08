@@ -21,16 +21,18 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
+
     @Column(unique = true)
     private RoleName name;
+
     @ManyToMany(mappedBy = "roles")
-    private List<Carrier> carriers;
+    private List<User> users;
 
         //Constructores de Role
     @PrePersist
     public void prePersistCarrier(){
-        if(this.carriers == null || this.carriers.isEmpty()){
-            this.carriers = new ArrayList<>();
+        if(this.users == null){
+            this.users = new ArrayList<>();
         }
     }
     //Asignadores de atributos de Role (setters)
