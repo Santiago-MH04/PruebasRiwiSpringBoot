@@ -1,10 +1,8 @@
 package org.springboot.jpa.riwi.pruebas.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 import org.springboot.jpa.riwi.pruebas.utils.palletUtils.Location;
 import org.springboot.jpa.riwi.pruebas.utils.palletUtils.State;
 
@@ -21,13 +19,21 @@ public class Pallet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "maximum_capacity")
-    private int maximumCapacity;
-    private State state;
-    private Location location;
-    @OneToOne(mappedBy = "pallet")
-    private Load load;
 
+    @Column(name = "maximum_capacity")
+    @NotNull(message = "must contain the pallet maximum capacity, in kg")
+    private int maximumCapacity;
+
+    @NotNull(message = "must tell the user the pallet's state")
+    private State state;
+
+    @NotNull(message = "must tell the user the pallet's location at the warehouse")
+    private Location location;
+
+    @OneToOne(mappedBy = "pallet")
+    @JoinColumn(name = "load_id")
+    @ToString.Exclude
+    private Load load;  //Si al ingresar la estiba, no tiene un load_id asignado, es que está libre para usar o dañada
 
     //Constructores de EntityTemplate
     //Asignadores de atributos de EntityTemplate (setters)

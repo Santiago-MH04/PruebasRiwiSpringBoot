@@ -1,10 +1,8 @@
 package org.springboot.jpa.riwi.pruebas.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 import org.springboot.jpa.riwi.pruebas.utils.loadUtils.*;
 import org.springboot.jpa.riwi.pruebas.utils.palletUtils.State;
 
@@ -24,9 +22,9 @@ public class Load {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    private int height;
     private int length;
     private int width;
-    private int deep;
 
     private int weight;
     private Status status;
@@ -38,9 +36,19 @@ public class Load {
         orphanRemoval = true
     )
     @JoinColumn(name = "pallet_id")
+    @NotNull(message = "must be the id of the correspondent pallet")
     private Pallet pallet;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    @NotNull(message = "must be a proper user id")
+    private User user;
+
+    @ManyToOne
+    /*@JoinColumn(name = "carrier_id")*/
+    @ToString.Exclude
+    @NotNull(message = "must be the id of the chosen carrier")
     private Carrier carrier;
 
         //Constructores de Load

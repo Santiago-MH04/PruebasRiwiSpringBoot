@@ -26,6 +26,7 @@ public class Role {
     private RoleName name;
 
     @ManyToMany(mappedBy = "roles")
+    @ToString.Exclude
     private List<User> users;
 
         //Constructores de Role

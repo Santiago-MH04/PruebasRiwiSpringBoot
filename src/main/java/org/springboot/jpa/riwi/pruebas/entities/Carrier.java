@@ -1,6 +1,7 @@
 package org.springboot.jpa.riwi.pruebas.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,8 @@ public class Carrier {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
+
+    @NotBlank(message = "must contain the company name")
     private String company;
 
     @OneToMany(
@@ -52,7 +55,9 @@ public class Carrier {
         //Constructores de Carrier
     @PrePersist
     public void prePersistCarrier(){
-        if(this.loads == null || this.loads.isEmpty()){
+        if(this.users == null || this.users.isEmpty()){
+            this.users = new ArrayList<>();
+        }if(this.loads == null || this.loads.isEmpty()){
             this.loads = new ArrayList<>();
         }
     }
